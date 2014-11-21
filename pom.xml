@@ -37,6 +37,9 @@
     </developers>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <netbeans.hint.license>lgpl30</netbeans.hint.license>
+
         <tapestry-release-version>5.3.7</tapestry-release-version>
         <servlet-api-release-version>2.5</servlet-api-release-version>
         <testng-release-version>5.14.10</testng-release-version>
@@ -63,6 +66,23 @@
                 <groupId>org.apache.tapestry</groupId>
                 <artifactId>tapestry-upload</artifactId>
                 <version>${tapestry-release-version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>5.5.1</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>4.3.7.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>1.7.1.RELEASE</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

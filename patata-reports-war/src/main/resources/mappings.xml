@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <configuration>
+        <custom-converters>
+            <converter type="com.googlecode.report.service.utils.mapper.StringToUUIDConverter">
+                <class-a>java.lang.String</class-a>
+                <class-b>java.util.UUID</class-b>
+            </converter>
+        </custom-converters>
+    </configuration>
+    
+    <mapping>
+        <class-a>com.googlecode.report.service.model.DataSource</class-a>
+        <class-b>com.googlecode.report.service.view.DataSourceView</class-b>
+        <field type="one-way">
+            <a>id</a>
+            <b>id</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>com.googlecode.report.service.model.ReportTemplate</class-a>
+        <class-b>com.googlecode.report.service.view.ReportTemplateView</class-b>
+        <field type="one-way">
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field type="one-way">
+            <a>created</a>
+            <b>created</b>
+        </field>
+        <field custom-converter-id="DataSourceToUUIDConverter">
+            <a>defaultDatasource</a>
+            <b>defaultDatasourceId</b>
+        </field>
+        <field type="one-way">
+            <a>reportDataSources</a>
+            <b>reportDataSources</b>
+            <a-hint>com.googlecode.report.service.model.ReportDataSource</a-hint>
+            <b-hint>com.googlecode.report.service.view.ReportDataSourceView</b-hint>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>com.googlecode.report.service.model.ReportDataSource</class-a>
+        <class-b>com.googlecode.report.service.view.ReportDataSourceView</class-b>
+        <field type="one-way">
+            <a>id</a>
+            <b>id</b>
+        </field>
+
+        <field custom-converter-id="DataSourceToUUIDConverter">
+            <a>dataSource</a>
+            <b>datasourceId</b>
+        </field>
+    </mapping>    
+
+    <mapping>
+        <class-a>com.googlecode.report.service.model.ReportFolder</class-a>
+        <class-b>com.googlecode.report.service.view.ReportFolderView</class-b>
+        <field type="one-way">
+            <a>id</a>
+            <b>id</b>
+        </field>
+
+        <field custom-converter-id="ReportFolderToUUIDConverter">
+            <a>parent</a>
+            <b>parentId</b>
+        </field>
+    </mapping>    
+
+    <mapping>
+        <class-a>com.googlecode.report.service.model.Report</class-a>
+        <class-b>com.googlecode.report.service.view.ReportView</class-b>
+        <field type="one-way">
+            <a>id</a>
+            <b>id</b>
+        </field>
+
+        <field custom-converter-id="ReportFolderToUUIDConverter">
+            <a>folder</a>
+            <b>folderId</b>
+        </field>
+
+        <field custom-converter-id="ReportTemplateToUUIDConverter">
+            <a>currentTemplate</a>
+            <b>currentTemplateId</b>
+        </field>
+    </mapping>    
+
+    <mapping>
+        <class-a>com.googlecode.report.service.model.Report</class-a>
+        <class-b>com.googlecode.report.service.view.ExtendedReportView</class-b>
+
+        <field type="one-way">
+            <a>id</a>
+            <b>id</b>
+        </field>
+
+        <field custom-converter-id="ReportFolderToUUIDConverter">
+            <a>folder</a>
+            <b>folderId</b>
+        </field>
+
+        <field type="one-way" custom-converter-id="ReportTemplateToUUIDConverter">
+            <a>currentTemplate</a>
+            <b>currentTemplateId</b>
+        </field>
+
+        <field type="one-way">
+            <a>currentTemplate</a>
+            <b>currentTemplate</b>
+        </field>
+    </mapping>
+</mappings>

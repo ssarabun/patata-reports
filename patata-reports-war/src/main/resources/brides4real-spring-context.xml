@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd">
+
+    
+    <bean class="com.maveneffect.brides4real.factory.account.property.PropertySetInstanceFactoryImpl"/>
+    
+    <bean class="com.maveneffect.brides4real.factory.account.AccountRoleFactoryImpl"/>
+    <bean class="com.maveneffect.brides4real.factory.account.LocationInfoFactoryImpl"/>
+    <bean class="com.maveneffect.brides4real.factory.agency.AgencyDepartmentFactoryImpl"/>
+    <bean class="com.maveneffect.brides4real.factory.agency.AgencyFactoryImpl"/>
+    
+    <bean class="com.maveneffect.brides4real.action.agency.AgencyActionImpl"/>
+    <bean class="com.maveneffect.brides4real.action.agency.AgencyDepartmentActionImpl"/>
+    
+    <bean class="com.maveneffect.brides4real.toa.UploadFileToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.account.AccountInfoToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.account.AccountStatusToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.account.ManPersonalInfoToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.account.MansRequirementToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.account.OperatorPersonalInfoToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.agency.AgencyToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.agency.AgencyDepartmentToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.appearance.EyeColorToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.appearance.HairColorToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.appearance.HeightToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.appearance.WeightToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.ChildrenRequirementToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.CountryToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.DrinkingToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.EducationToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.GenderToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.LanguageToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.LanguageLevelToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.MaritalStatusToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.NewsToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.ProfessionToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.RegionToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.ReligionToaImpl"/>
+    <bean class="com.maveneffect.brides4real.toa.common.SmokingToaImpl"/>
+    
+    <bean class="com.maveneffect.brides4real.service.UploadFileServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.account.AccountInfoServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.account.AccountStatusServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.account.ManPersonalInfoServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.account.MansRequirementServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.account.OperatorPersonalInfoServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.agency.AgencyServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.agency.AgencyDepartmentServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.appearance.EyeColorServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.appearance.HairColorServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.appearance.HeightServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.appearance.WeightServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.ChildrenRequirementServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.CountryServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.DrinkingServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.EducationServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.GenderServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.LanguageServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.LanguageLevelServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.MaritalStatusServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.NewsServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.ProfessionServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.RegionServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.ReligionServiceImpl"/>
+    <bean class="com.maveneffect.brides4real.service.common.SmokingServiceImpl"/>
+
+    <bean id="dozerObjectPool" class="org.apache.commons.pool.impl.GenericObjectPool">
+        <constructor-arg type="org.apache.commons.pool.PoolableObjectFactory">
+            <bean class="com.maveneffect.brides4real.utils.mapper.DozerPoolableObjectFactory">
+                <property name="mappingFiles">
+                    <list>
+                        <value>mappings.xml</value>
+                    </list>
+                </property>
+                <property name="converters">
+                    <map merge="true">
+                        <entry key="AccountStatusConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.account.AccountStatusResolverConverter" />
+                        </entry>
+                        <entry key="MansRequirementConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.account.MansRequirementResolverConverter" />
+                        </entry>
+                        <entry key="OperatorPersonalInfoConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.account.OperatorPersonalInfoResolverConverter" />
+                        </entry>
+
+                        <entry key="AgencyConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.agency.AgencyResolverConverter" />
+                        </entry>
+
+                        <entry key="ChildrenRequirementConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.ChildrenRequirementResolverConverter" />
+                        </entry>
+                        <entry key="EyeColorConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.appearance.EyeColorResolverConverter" />
+                        </entry>
+                        <entry key="HairColorConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.appearance.HairColorResolverConverter" />
+                        </entry>
+                        <entry key="HeightConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.appearance.HeightResolverConverter" />
+                        </entry>
+                        <entry key="WeightConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.appearance.WeightResolverConverter" />
+                        </entry>
+                        
+                        <entry key="CountryConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.CountryResolverConverter" />
+                        </entry>
+                        <entry key="DrinkingConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.DrinkingResolverConverter" />
+                        </entry>
+                        <entry key="EducationConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.EducationResolverConverter" />
+                        </entry>
+                        <entry key="GenderConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.GenderResolverConverter" />
+                        </entry>
+                        <entry key="LanguageLevelConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.LanguageLevelResolverConverter" />
+                        </entry>
+                        <entry key="LanguageConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.LanguageResolverConverter" />
+                        </entry>
+                        <entry key="MaritalStatusConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.MaritalStatusResolverConverter" />
+                        </entry>
+                        <entry key="ProfessionConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.ProfessionResolverConverter" />
+                        </entry>
+                        <entry key="RegionConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.RegionResolverConverter" />
+                        </entry>
+                        <entry key="ReligionConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.ReligionResolverConverter" />
+                        </entry>
+                        <entry key="SmokingConverter">
+                            <bean class="com.maveneffect.brides4real.utils.mapper.common.SmokingResolverConverter" />
+                        </entry>
+                    </map>
+                </property>
+            </bean>
+        </constructor-arg>
+        <property name="maxActive" value="20"/>
+    </bean>
+    
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    
+    <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+        <property name="persistenceXmlLocations">
+            <list>
+                <value>classpath*:META-INF/persistence.xml</value>
+            </list>
+        </property>
+        <property name="defaultDataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="internalEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitManager" ref="persistenceUnitManager"/>
+        <property name="persistenceUnitName" value="Brides4RealPU"/>
+    </bean>
+    
+    <bean id="entityManagerFactory" class="com.maveneffect.brides4real.EntityManagerFactoryWrapper">
+        <constructor-arg type="javax.persistence.EntityManagerFactory" ref="internalEntityManagerFactory"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <context:component-scan base-package="com.maveneffect.brides4real.action"/>
+    <context:component-scan base-package="com.maveneffect.brides4real.repository"/>
+    
+    <jpa:repositories base-package="com.maveneffect.brides4real.repository"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>
+</beans>
