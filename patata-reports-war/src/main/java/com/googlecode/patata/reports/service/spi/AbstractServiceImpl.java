@@ -1,38 +1,38 @@
-package com.googlecode.report.service.service;
+package com.googlecode.patata.reports.service.spi;
 
-import com.googlecode.report.service.model.spi.Identifiable;
-import com.googlecode.report.service.repository.spi.IJpaRepositoryFactory;
-import com.googlecode.report.service.toa.IToa;
-import com.googlecode.report.service.view.AbstractView;
+import com.googlecode.patata.reports.dto.AbstractDto;
+import com.googlecode.patata.reports.model.spi.Identifiable;
+import com.googlecode.patata.reports.service.api.BaseService;
+import com.googlecode.patata.reports.service.api.IOrder;
+import com.googlecode.patata.reports.toa.IToa;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author sergey.sarabun@gmail.com
+ * @param <V>
+ * @param <E>
+ * @param <EID>
+ * @param <VID>
  * @date May 23, 2014
  */
-public abstract class AbstractServiceImpl<V extends AbstractView<VID>, E extends Identifiable<EID>, EID extends Serializable, VID extends Serializable>
+@Transactional
+public abstract class AbstractServiceImpl<V extends AbstractDto<VID>, E extends Identifiable<EID>, EID extends Serializable, VID extends Serializable>
         implements BaseService<V, VID> {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractServiceImpl.class);
-    @PersistenceContext
-    protected EntityManager em;
-    @Inject
-    private IJpaRepositoryFactory repositoryFactory;
 
     @Override
     public List<V> findAll() {
@@ -46,7 +46,7 @@ public abstract class AbstractServiceImpl<V extends AbstractView<VID>, E extends
 
         PageRequest pageRequest = null;
         if (order != null) {
-            List<Sort.Order> orders = new ArrayList<>();
+            List<Sort.Order> orders = new ArrayList<Sort.Order>();
             for (IOrder iOrder : order) {
                 orders.add(new Sort.Order(
                         iOrder.isAsc() ? Sort.Direction.ASC : Sort.Direction.DESC,
@@ -92,7 +92,7 @@ public abstract class AbstractServiceImpl<V extends AbstractView<VID>, E extends
             EID eId = toa.convertViewId(id);
             entity = repository.findOne(eId);
         }
-        Map<Object, Object> params = new HashMap<>();
+        Map<Object, Object> params = new HashMap<Object, Object>();
         beforeMerge(view, entity, params);
         toa.merge(entity, view);
         beforeSave(view, entity, params);
@@ -113,13 +113,13 @@ public abstract class AbstractServiceImpl<V extends AbstractView<VID>, E extends
     }
 
     @Override
-    public void delete(V DTO) {
-        delete(DTO.getId());
+    public void delete(V dto) {
+        delete(dto.getId());
     }
 
     private List<V> convert(Collection<E> entitis) {
         IToa<E, V, EID, VID> toa = getToa();
-        List<V> resultList = new ArrayList<>();
+        List<V> resultList = new ArrayList<V>();
         for (E entity : entitis) {
             resultList.add(toa.create(entity));
         }
@@ -135,11 +135,7 @@ public abstract class AbstractServiceImpl<V extends AbstractView<VID>, E extends
     protected void beforeDelete(E entity) {
     }
 
-    protected JpaRepository<E, EID> getRepository() {
-        return repositoryFactory.getRepository(getRepositoryInterface(), em);
-    }
-
-    protected abstract Class<? extends JpaRepository<E, EID>> getRepositoryInterface();
+    protected abstract JpaRepository<E, EID> getRepository();
 
     protected abstract IToa<E, V, EID, VID> getToa();
 }

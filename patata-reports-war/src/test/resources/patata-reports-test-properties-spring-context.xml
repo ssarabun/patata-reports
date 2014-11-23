@@ -21,7 +21,7 @@
                   value="true"/>
         <property name="locations">
             <list>
-                <value>classpath:brides4real-test.properties</value>
+                <value>classpath:patata-reports-test.properties</value>
             </list>
         </property>
     </bean>

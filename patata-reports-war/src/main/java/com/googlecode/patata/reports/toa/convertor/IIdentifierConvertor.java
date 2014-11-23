@@ -5,6 +5,8 @@ import java.io.Serializable;
 /**
  *
  * @author sergey.sarabun@gmail.com
+ * @param <EID>
+ * @param <VID>
  * @date Aug 7, 2014
  */
 public interface IIdentifierConvertor<EID extends Serializable, VID extends Serializable> {

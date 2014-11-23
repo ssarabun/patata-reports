@@ -1,11 +1,11 @@
-package com.googlecode.report.service.service;
+package com.googlecode.patata.reports.service;
 
-import com.googlecode.report.service.view.ReportView;
+import com.googlecode.patata.reports.dto.ReportView;
+import com.googlecode.patata.reports.service.api.IReportService;
 import java.util.UUID;
 import javax.inject.Inject;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,8 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //@Ignore
 @RunWith(value = SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
-    "classpath:reportservice-test-properties-spring-context.xml",
-    "classpath:reportservice-spring-context.xml"
+    "classpath:patata-reports-test-properties-spring-context.xml",
+    "classpath:patata-reports-spring-context.xml"
 })
 public class ReportServiceTest {
 

@@ -7,6 +7,8 @@ import java.util.List;
 /**
  *
  * @author sergey.sarabun@gmail.com
+ * @param <V>
+ * @param <VID>
  * @date May 26, 2014
  */
 public interface BaseService<V extends AbstractDto, VID extends Serializable> {
@@ -32,6 +34,8 @@ public interface BaseService<V extends AbstractDto, VID extends Serializable> {
 //    List<DTO> findAll(List<QueryField> queryFields);
     /**
      * Used for "lists" functionality with pagination support.
+     * @param view
+     * @return saved view
      */
     //TODO QueryField
 //    List<DTO> findAll(int page, int size, List<QueryField> queryFields);

@@ -1,0 +1,2 @@
+insert into rs_datasource(datasource_id, version, jndi_name, name, description) values ('5afba5ff-be24-4777-b85d-7ef408c42bc1', 0, 'java:/test/jndi_ds_name_1', 'test ds #1', null), ('5afba5ff-be24-4777-b85d-7ef408c42bc2', 0, 'java:/test/jndi_ds_name_2', 'test ds #2', null);
+insert into rs_report_template (report_template_id, version, created, name, content, default_datasource_id) values ('77664235-f139-4e7a-974a-567e064edc0b', 0, now(), 'test templete', 'test content', '5afba5ff-be24-4777-b85d-7ef408c42bc1');

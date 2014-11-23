@@ -16,6 +16,10 @@ import org.dozer.Mapper;
 /**
  *
  * @author sergey.sarabun@gmail.com
+ * @param <E>
+ * @param <V>
+ * @param <EID>
+ * @param <VID>
  * @date May 23, 2014
  */
 public abstract class AbsrtactToaImpl<E extends Identifiable<EID>, V extends AbstractDto, EID extends Serializable, VID extends Serializable>
