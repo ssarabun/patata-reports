@@ -1,6 +1,6 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.ExtendedReportView;
+import com.googlecode.patata.reports.dto.ExtendedReportDto;
 import com.googlecode.patata.reports.model.Report;
 import com.googlecode.patata.reports.model.ReportTemplate;
 import com.googlecode.patata.reports.repository.IReportRepository;
@@ -16,7 +16,7 @@ import javax.inject.Inject;
  *
  * @author ssarabun
  */
-public class ExtendedReportServiceImpl extends AbstractServiceImpl<ExtendedReportView, Report, String, UUID>
+public class ExtendedReportServiceImpl extends AbstractServiceImpl<ExtendedReportDto, Report, String, UUID>
         implements IExtendedReportService {
 
     @Inject
@@ -27,7 +27,7 @@ public class ExtendedReportServiceImpl extends AbstractServiceImpl<ExtendedRepor
     private IReportRepository repository;
 
     @Override
-    protected void beforeSave(ExtendedReportView view, Report entity, Map<Object, Object> params) {
+    protected void beforeSave(ExtendedReportDto view, Report entity, Map<Object, Object> params) {
         if (view.getCurrentTemplate().getId() == null) {
             ReportTemplate currentTemplate = entity.getCurrentTemplate();
             if (currentTemplate != null) {

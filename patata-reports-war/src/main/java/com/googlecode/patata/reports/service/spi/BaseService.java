@@ -1,4 +1,4 @@
-package com.googlecode.patata.reports.service.api;
+package com.googlecode.patata.reports.service.spi;
 
 import com.googlecode.patata.reports.dto.AbstractDto;
 import java.io.Serializable;
@@ -17,7 +17,7 @@ public interface BaseService<V extends AbstractDto, VID extends Serializable> {
 
     List<V> findAll();
 
-    List<V> findAll(int page, int size, IOrder... order);
+    List<V> findAll(Pageable pageable);
 
     long count();
 
@@ -34,6 +34,7 @@ public interface BaseService<V extends AbstractDto, VID extends Serializable> {
 //    List<DTO> findAll(List<QueryField> queryFields);
     /**
      * Used for "lists" functionality with pagination support.
+     *
      * @param view
      * @return saved view
      */
@@ -54,8 +55,8 @@ public interface BaseService<V extends AbstractDto, VID extends Serializable> {
      * Deletes a given DTO.
      *
      * @param DTO
-     * @throws IllegalArgumentException in case the given DTO is
-     * (@literal null}.
+     * @throws IllegalArgumentException in case the given DTO is (@literal
+     * null}.
      */
     void delete(V DTO);
 }

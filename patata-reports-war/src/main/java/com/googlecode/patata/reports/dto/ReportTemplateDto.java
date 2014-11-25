@@ -10,14 +10,14 @@ import java.util.UUID;
  * @author sergey.sarabun@gmail.com
  * @date Aug 5, 2014
  */
-public class ReportTemplateView extends AbstractDto<UUID> {
+public class ReportTemplateDto extends AbstractDto<UUID> {
 
     private Date created;
     private UUID prevVersionId;
     private String name;
     private String content;
     private UUID defaultDatasourceId;
-    private List<ReportDataSourceView> reportDatasources = new ArrayList<ReportDataSourceView>();
+    private List<ReportDataSourceDto> reportDatasources = new ArrayList<ReportDataSourceDto>();
 
     public Date getCreated() {
         return created;
@@ -59,11 +59,11 @@ public class ReportTemplateView extends AbstractDto<UUID> {
         this.defaultDatasourceId = defaultDatasourceId;
     }
 
-    public List<ReportDataSourceView> getReportDatasources() {
+    public List<ReportDataSourceDto> getReportDatasources() {
         return reportDatasources;
     }
 
-    public void setReportDatasources(List<ReportDataSourceView> reportDatasources) {
+    public void setReportDatasources(List<ReportDataSourceDto> reportDatasources) {
         this.reportDatasources = reportDatasources;
     }
 }

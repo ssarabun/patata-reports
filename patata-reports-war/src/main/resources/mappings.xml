@@ -13,7 +13,7 @@
     
     <mapping>
         <class-a>com.googlecode.patata.reports.model.DataSource</class-a>
-        <class-b>com.googlecode.patata.reports.dto.DataSourceView</class-b>
+        <class-b>com.googlecode.patata.reports.dto.DataSourceDto</class-b>
         <field type="one-way">
             <a>id</a>
             <b>id</b>
@@ -22,7 +22,7 @@
 
     <mapping>
         <class-a>com.googlecode.patata.reports.model.ReportTemplate</class-a>
-        <class-b>com.googlecode.patata.reports.dto.ReportTemplateView</class-b>
+        <class-b>com.googlecode.patata.reports.dto.ReportTemplateDto</class-b>
         <field type="one-way">
             <a>id</a>
             <b>id</b>
@@ -39,13 +39,13 @@
             <a>reportDataSources</a>
             <b>reportDataSources</b>
             <a-hint>com.googlecode.patata.reports.model.ReportDataSource</a-hint>
-            <b-hint>com.googlecode.patata.reports.dto.ReportDataSourceView</b-hint>
+            <b-hint>com.googlecode.patata.reports.dto.ReportDataSourceDto</b-hint>
         </field>
     </mapping>
 
     <mapping>
         <class-a>com.googlecode.patata.reports.model.ReportDataSource</class-a>
-        <class-b>com.googlecode.patata.reports.dto.ReportDataSourceView</class-b>
+        <class-b>com.googlecode.patata.reports.dto.ReportDataSourceDto</class-b>
         <field type="one-way">
             <a>id</a>
             <b>id</b>
@@ -59,7 +59,7 @@
 
     <mapping>
         <class-a>com.googlecode.patata.reports.model.ReportFolder</class-a>
-        <class-b>com.googlecode.patata.reports.dto.ReportFolderView</class-b>
+        <class-b>com.googlecode.patata.reports.dto.ReportFolderDto</class-b>
         <field type="one-way">
             <a>id</a>
             <b>id</b>
@@ -73,7 +73,7 @@
 
     <mapping>
         <class-a>com.googlecode.patata.reports.model.Report</class-a>
-        <class-b>com.googlecode.patata.reports.dto.ReportView</class-b>
+        <class-b>com.googlecode.patata.reports.dto.ReportDto</class-b>
         <field type="one-way">
             <a>id</a>
             <b>id</b>
@@ -92,7 +92,7 @@
 
     <mapping>
         <class-a>com.googlecode.patata.reports.model.Report</class-a>
-        <class-b>com.googlecode.patata.reports.dto.ExtendedReportView</class-b>
+        <class-b>com.googlecode.patata.reports.dto.ExtendedReportDto</class-b>
 
         <field type="one-way">
             <a>id</a>

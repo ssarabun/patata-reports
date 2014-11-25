@@ -1,6 +1,6 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.ReportView;
+import com.googlecode.patata.reports.dto.ReportDto;
 import com.googlecode.patata.reports.service.api.IReportService;
 import java.util.UUID;
 import javax.inject.Inject;
@@ -41,14 +41,14 @@ public class ReportServiceTest {
 
 
         //create and init view
-        ReportView view = new ReportView();
+        ReportDto view = new ReportDto();
         view.setName(name);
         view.setFolderId(folderId);
         view.setCurrentTemplateId(currentTemplateId);
 
 
         //save view
-        ReportView createdView = service.save(view);
+        ReportDto createdView = service.save(view);
         assertNotNull(createdView);
         assertNotNull(createdView.getId());
 
@@ -60,7 +60,7 @@ public class ReportServiceTest {
         assertEquals(createdView.getCurrentTemplateId(), view.getCurrentTemplateId());
 
         //find view
-        ReportView foundView = service.findOne(createdView.getId());
+        ReportDto foundView = service.findOne(createdView.getId());
         assertNotNull(foundView);
 
         assertNotNull(foundView.getId());
@@ -75,7 +75,7 @@ public class ReportServiceTest {
         createdView.setFolderId(newfolderId);
         createdView.setCurrentTemplateId(newCurrentTemplateId);
 
-        ReportView updatedView = service.save(createdView);
+        ReportDto updatedView = service.save(createdView);
         assertNotNull(updatedView);
         assertEquals(updatedView.getId(), createdView.getId());
         assertEquals(updatedView.getName(), createdView.getName());

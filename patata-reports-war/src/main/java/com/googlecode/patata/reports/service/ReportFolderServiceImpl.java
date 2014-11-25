@@ -1,6 +1,6 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.ReportFolderView;
+import com.googlecode.patata.reports.dto.ReportFolderDto;
 import com.googlecode.patata.reports.model.ReportFolder;
 import com.googlecode.patata.reports.repository.IReportFolderRepository;
 import com.googlecode.patata.reports.service.api.IReportFolderService;
@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author ssarabun
  */
-public class ReportFolderServiceImpl extends AbstractServiceImpl<ReportFolderView, ReportFolder, String, UUID>
+public class ReportFolderServiceImpl extends AbstractServiceImpl<ReportFolderDto, ReportFolder, String, UUID>
         implements IReportFolderService {
 
     @Inject
@@ -23,8 +23,8 @@ public class ReportFolderServiceImpl extends AbstractServiceImpl<ReportFolderVie
     @Inject
     private IReportFolderToa toa;
 
-    public ReportFolderView getRootReportFolder() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ReportFolderDto getRootReportFolder() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

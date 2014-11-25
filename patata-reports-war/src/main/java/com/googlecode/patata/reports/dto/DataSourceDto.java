@@ -7,7 +7,7 @@ import java.util.UUID;
  * @author sergey.sarabun@gmail.com
  * @date Aug 4, 2014
  */
-public class DataSourceView extends AbstractDto<UUID> {
+public class DataSourceDto extends AbstractDto<UUID> {
 
     private String jndiName;
     private String name;

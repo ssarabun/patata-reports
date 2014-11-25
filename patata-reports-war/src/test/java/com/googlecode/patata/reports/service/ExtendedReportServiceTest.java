@@ -1,7 +1,7 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.ExtendedReportView;
-import com.googlecode.patata.reports.dto.ReportTemplateView;
+import com.googlecode.patata.reports.dto.ExtendedReportDto;
+import com.googlecode.patata.reports.dto.ReportTemplateDto;
 import com.googlecode.patata.reports.service.api.IExtendedReportService;
 import java.util.UUID;
 import javax.inject.Inject;
@@ -44,10 +44,10 @@ public class ExtendedReportServiceTest {
 
 
         //create and init view
-        ExtendedReportView view = new ExtendedReportView();
+        ExtendedReportDto view = new ExtendedReportDto();
         view.setName(name);
         view.setFolderId(folderId);
-        ReportTemplateView template = new ReportTemplateView();
+        ReportTemplateDto template = new ReportTemplateDto();
         template.setName(templateName);
         template.setContent(templateContent);
         template.setDefaultDatasourceId(defaultDatasourceId);
@@ -56,7 +56,7 @@ public class ExtendedReportServiceTest {
 
 
         //save view
-        ExtendedReportView createdView = service.save(view);
+        ExtendedReportDto createdView = service.save(view);
         assertNotNull(createdView);
         assertNotNull(createdView.getId());
 
@@ -73,7 +73,7 @@ public class ExtendedReportServiceTest {
         assertEquals(createdView.getCurrentTemplate().getDefaultDatasourceId(), view.getCurrentTemplate().getDefaultDatasourceId());
 
         //find view
-        ExtendedReportView foundView = service.findOne(createdView.getId());
+        ExtendedReportDto foundView = service.findOne(createdView.getId());
         assertNotNull(foundView);
 
         assertNotNull(foundView.getId());
@@ -86,13 +86,13 @@ public class ExtendedReportServiceTest {
         //update view
         createdView.setName(newName);
         createdView.setFolderId(newfolderId);
-        template = new ReportTemplateView();
+        template = new ReportTemplateDto();
         template.setName(newTemplateName);
         template.setContent(newTemplateContent);
         template.setDefaultDatasourceId(newDefaultDatasourceId);
         createdView.setCurrentTemplate(template);
 
-        ExtendedReportView updatedView = service.save(createdView);
+        ExtendedReportDto updatedView = service.save(createdView);
         assertNotNull(updatedView);
         assertEquals(updatedView.getId(), createdView.getId());
         assertEquals(updatedView.getName(), createdView.getName());

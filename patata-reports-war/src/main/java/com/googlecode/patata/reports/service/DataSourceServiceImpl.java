@@ -1,6 +1,6 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.DataSourceView;
+import com.googlecode.patata.reports.dto.DataSourceDto;
 import com.googlecode.patata.reports.model.DataSource;
 import com.googlecode.patata.reports.repository.IDataSourceRepository;
 import com.googlecode.patata.reports.service.api.IDataSourceService;
@@ -13,7 +13,7 @@ import javax.inject.Inject;
  *
  * @author ssarabun
  */
-public class DataSourceServiceImpl extends AbstractServiceImpl<DataSourceView, DataSource, String, UUID>
+public class DataSourceServiceImpl extends AbstractServiceImpl<DataSourceDto, DataSource, String, UUID>
         implements IDataSourceService {
 
     @Inject

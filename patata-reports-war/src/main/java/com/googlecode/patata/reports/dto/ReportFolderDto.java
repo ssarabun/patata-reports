@@ -9,12 +9,12 @@ import java.util.UUID;
  * @author sergey.sarabun@gmail.com
  * @date Aug 7, 2014
  */
-public class ReportFolderView extends AbstractDto<UUID> {
+public class ReportFolderDto extends AbstractDto<UUID> {
 
     private String name;
     private UUID parentId;
-    private Set<ReportFolderView> children = new HashSet<ReportFolderView>();
-    private Set<BaseReportView> reports = new HashSet<BaseReportView>();
+    private Set<ReportFolderDto> children = new HashSet<ReportFolderDto>();
+    private Set<BaseReportDto> reports = new HashSet<BaseReportDto>();
 
     public String getName() {
         return name;
@@ -32,19 +32,19 @@ public class ReportFolderView extends AbstractDto<UUID> {
         this.parentId = parentId;
     }
 
-    public Set<ReportFolderView> getChildren() {
+    public Set<ReportFolderDto> getChildren() {
         return children;
     }
 
-    public void setChildren(Set<ReportFolderView> children) {
+    public void setChildren(Set<ReportFolderDto> children) {
         this.children = children;
     }
 
-    public Set<BaseReportView> getReports() {
+    public Set<BaseReportDto> getReports() {
         return reports;
     }
 
-    public void setReports(Set<BaseReportView> reports) {
+    public void setReports(Set<BaseReportDto> reports) {
         this.reports = reports;
     }
 }

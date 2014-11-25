@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2013 sergey.sarabun@gmail.com.
+ *  Copyright (C) 2014 sergey.sarabun@gmail.com.
  * 
  *  This library is free software: you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public 
@@ -16,44 +16,22 @@
  */
 package com.googlecode.patata.reports.dto;
 
-import java.io.Serializable;
+import java.util.UUID;
 
 /**
  *
  * @author sergey.sarabun@gmail.com
- * @param <T> id
- * @date May 23, 2014
+ * @date Aug 7, 2014
  */
-public class AbstractDto<T extends Serializable> implements java.io.Serializable {
+public class BaseReportDto extends AbstractDto<UUID> {
 
-    protected T id;
-    protected long version;
+    protected String name;
 
-    public AbstractDto() {
+    public String getName() {
+        return name;
     }
 
-    public AbstractDto(T id) {
-        this.id = id;
-    }
-
-    public T getId() {
-        return id;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setId(T id) {
-        this.id = id;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
-    }
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + "{" + "id=" + id + ", version=" + version + '}';
+    public void setName(String name) {
+        this.name = name;
     }
 }

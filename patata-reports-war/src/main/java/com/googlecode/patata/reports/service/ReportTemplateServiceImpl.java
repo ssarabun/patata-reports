@@ -1,6 +1,6 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.ReportTemplateView;
+import com.googlecode.patata.reports.dto.ReportTemplateDto;
 import com.googlecode.patata.reports.model.ReportTemplate;
 import com.googlecode.patata.reports.repository.IReportTemplateRepository;
 import com.googlecode.patata.reports.service.api.IReportTemplateService;
@@ -13,7 +13,7 @@ import javax.inject.Inject;
  *
  * @author ssarabun
  */
-public class ReportTemplateServiceImpl extends AbstractServiceImpl<ReportTemplateView, ReportTemplate, String, UUID>
+public class ReportTemplateServiceImpl extends AbstractServiceImpl<ReportTemplateDto, ReportTemplate, String, UUID>
         implements IReportTemplateService {
 
     @Inject

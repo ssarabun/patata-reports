@@ -2,7 +2,7 @@ package com.googlecode.patata.reports.toa;
 
 import com.googlecode.patata.reports.model.ReportDataSource;
 import com.googlecode.patata.reports.toa.convertor.IStringToUUIDIdentifierConvertor;
-import com.googlecode.patata.reports.dto.ReportDataSourceView;
+import com.googlecode.patata.reports.dto.ReportDataSourceDto;
 import java.util.UUID;
 import javax.inject.Inject;
 
@@ -11,20 +11,20 @@ import javax.inject.Inject;
  * @author sergey.sarabun@gmail.com
  * @date Aug 4, 2014
  */
-public class ReportDataSourceToaImpl extends AbsrtactToaImpl<ReportDataSource, ReportDataSourceView, String, UUID>
+public class ReportDataSourceToaImpl extends AbsrtactToaImpl<ReportDataSource, ReportDataSourceDto, String, UUID>
         implements IReportDataSourceToa {
 
     @Inject
     private IStringToUUIDIdentifierConvertor identifierConvertor;
 
     @Override
-    public ReportDataSource createEntityInstance(ReportDataSourceView view) {
+    public ReportDataSource createEntityInstance(ReportDataSourceDto view) {
         return new ReportDataSource();
     }
 
     @Override
-    public ReportDataSourceView createViewInstance(ReportDataSource entity) {
-        return new ReportDataSourceView();
+    public ReportDataSourceDto createViewInstance(ReportDataSource entity) {
+        return new ReportDataSourceDto();
     }
 
     @Override

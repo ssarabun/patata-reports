@@ -2,7 +2,7 @@ package com.googlecode.patata.reports.toa;
 
 import com.googlecode.patata.reports.model.Report;
 import com.googlecode.patata.reports.toa.convertor.IStringToUUIDIdentifierConvertor;
-import com.googlecode.patata.reports.dto.ExtendedReportView;
+import com.googlecode.patata.reports.dto.ExtendedReportDto;
 import java.util.UUID;
 import javax.inject.Inject;
 
@@ -11,20 +11,20 @@ import javax.inject.Inject;
  * @author sergey.sarabun@gmail.com
  * @date Aug 8, 2014
  */
-public class ExtendedReportToaImpl extends AbsrtactToaImpl<Report, ExtendedReportView, String, UUID>
+public class ExtendedReportToaImpl extends AbsrtactToaImpl<Report, ExtendedReportDto, String, UUID>
         implements IExtendedReportToa {
 
     @Inject
     private IStringToUUIDIdentifierConvertor identifierConvertor;
 
     @Override
-    public Report createEntityInstance(ExtendedReportView view) {
+    public Report createEntityInstance(ExtendedReportDto view) {
         return new Report();
     }
 
     @Override
-    public ExtendedReportView createViewInstance(Report entity) {
-        return new ExtendedReportView();
+    public ExtendedReportDto createViewInstance(Report entity) {
+        return new ExtendedReportDto();
     }
 
     @Override

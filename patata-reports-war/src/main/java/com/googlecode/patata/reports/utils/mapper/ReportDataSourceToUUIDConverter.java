@@ -4,7 +4,7 @@ import com.googlecode.patata.reports.utils.mapper.spi.AbstractCustomConverter;
 import com.googlecode.patata.reports.model.ReportDataSource;
 import com.googlecode.patata.reports.repository.IReportDataSourceRepository;
 import com.googlecode.patata.reports.toa.convertor.IStringToUUIDIdentifierConvertor;
-import com.googlecode.patata.reports.dto.ReportDataSourceView;
+import com.googlecode.patata.reports.dto.ReportDataSourceDto;
 import java.util.UUID;
 import javax.inject.Inject;
 
@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * @author sergey.sarabun@gmail.com
  * @date Aug 5, 2014
  */
-public class ReportDataSourceToUUIDConverter extends AbstractCustomConverter<ReportDataSource, ReportDataSourceView, String, UUID>
+public class ReportDataSourceToUUIDConverter extends AbstractCustomConverter<ReportDataSource, ReportDataSourceDto, String, UUID>
         implements IReportDataSourceToUUIDConverter {
 
     @Inject

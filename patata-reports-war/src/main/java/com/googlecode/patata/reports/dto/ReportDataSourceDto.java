@@ -7,15 +7,15 @@ import java.util.UUID;
  * @author sergey.sarabun@gmail.com
  * @date Aug 6, 2014
  */
-public class ReportDataSourceView extends AbstractDto<UUID> {
+public class ReportDataSourceDto extends AbstractDto<UUID> {
 
     private String parameterName;
     private UUID datasourceId;
 
-    public ReportDataSourceView() {
+    public ReportDataSourceDto() {
     }
 
-    public ReportDataSourceView(String parameterName, UUID datasourceId) {
+    public ReportDataSourceDto(String parameterName, UUID datasourceId) {
         this.parameterName = parameterName;
         this.datasourceId = datasourceId;
     }

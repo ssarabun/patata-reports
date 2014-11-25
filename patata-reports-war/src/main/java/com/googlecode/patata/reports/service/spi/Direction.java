@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2014 sergey.sarabun@gmail.com.
+ *  Copyright (C) 2014 Sergey Sarabun <sergey.sarabun@gmail.com>.
  * 
  *  This library is free software: you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public 
@@ -14,24 +14,15 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.patata.reports.dto;
-
-import java.util.UUID;
+package com.googlecode.patata.reports.service.spi;
 
 /**
  *
- * @author sergey.sarabun@gmail.com
- * @date Aug 7, 2014
+ * @author Sergey Sarabun <sergey.sarabun@gmail.com>
+ * @date Nov 24, 2014
  */
-public class BaseReportView extends AbstractDto<UUID> {
+public enum Direction implements java.io.Serializable {
 
-    protected String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    ASC,
+    DESC;
 }

@@ -3,8 +3,8 @@ package com.googlecode.patata.reports.toa;
 import com.googlecode.patata.reports.model.ReportDataSource;
 import com.googlecode.patata.reports.model.ReportTemplate;
 import com.googlecode.patata.reports.toa.convertor.IStringToUUIDIdentifierConvertor;
-import com.googlecode.patata.reports.dto.ReportDataSourceView;
-import com.googlecode.patata.reports.dto.ReportTemplateView;
+import com.googlecode.patata.reports.dto.ReportDataSourceDto;
+import com.googlecode.patata.reports.dto.ReportTemplateDto;
 import java.util.Collection;
 import java.util.UUID;
 import javax.inject.Inject;
@@ -14,33 +14,33 @@ import javax.inject.Inject;
  * @author sergey.sarabun@gmail.com
  * @date Aug 5, 2014
  */
-public class ReportTemplateToaImpl extends AbsrtactToaImpl<ReportTemplate, ReportTemplateView, String, UUID>
+public class ReportTemplateToaImpl extends AbsrtactToaImpl<ReportTemplate, ReportTemplateDto, String, UUID>
         implements IReportTemplateToa {
 
     @Inject
     private IStringToUUIDIdentifierConvertor identifierConvertor;
 
     @Override
-    public boolean merge(ReportTemplate entity, ReportTemplateView view) {
+    public boolean merge(ReportTemplate entity, ReportTemplateDto view) {
 
         boolean rc = super.merge(entity, view);
         mergeReportDataSource(entity, view);
         return rc;
     }
 
-    private void mergeReportDataSource(final ReportTemplate entity, ReportTemplateView view) {
+    private void mergeReportDataSource(final ReportTemplate entity, ReportTemplateDto view) {
 
-        Collection<ReportDataSourceView> views = view.getReportDatasources();
+        Collection<ReportDataSourceDto> views = view.getReportDatasources();
         Collection<ReportDataSource> entities = entity.getReportDataSources();
 
-        mergeCollection(views, entities, new MergeCollectionCallBack<ReportDataSource, ReportDataSourceView, String, UUID>() {
+        mergeCollection(views, entities, new MergeCollectionCallBack<ReportDataSource, ReportDataSourceDto, String, UUID>() {
             @Override
-            public ReportDataSource createEntity(ReportDataSourceView view) {
+            public ReportDataSource createEntity(ReportDataSourceDto view) {
                 return new ReportDataSource();
             }
 
             @Override
-            public void beforeSave(ReportDataSource subEntity, ReportDataSourceView subView) {
+            public void beforeSave(ReportDataSource subEntity, ReportDataSourceDto subView) {
                 subEntity.setReportTemplate(entity);
             }
 
@@ -52,13 +52,13 @@ public class ReportTemplateToaImpl extends AbsrtactToaImpl<ReportTemplate, Repor
     }
 
     @Override
-    public ReportTemplate createEntityInstance(ReportTemplateView view) {
+    public ReportTemplate createEntityInstance(ReportTemplateDto view) {
         return new ReportTemplate();
     }
 
     @Override
-    public ReportTemplateView createViewInstance(ReportTemplate entity) {
-        return new ReportTemplateView();
+    public ReportTemplateDto createViewInstance(ReportTemplate entity) {
+        return new ReportTemplateDto();
     }
 
     @Override

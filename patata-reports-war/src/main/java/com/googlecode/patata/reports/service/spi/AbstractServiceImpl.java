@@ -2,13 +2,12 @@ package com.googlecode.patata.reports.service.spi;
 
 import com.googlecode.patata.reports.dto.AbstractDto;
 import com.googlecode.patata.reports.model.spi.Identifiable;
-import com.googlecode.patata.reports.service.api.BaseService;
-import com.googlecode.patata.reports.service.api.IOrder;
 import com.googlecode.patata.reports.toa.IToa;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -42,22 +41,8 @@ public abstract class AbstractServiceImpl<V extends AbstractDto<VID>, E extends 
     }
 
     @Override
-    public List<V> findAll(int page, int size, IOrder... order) {
-
-        PageRequest pageRequest = null;
-        if (order != null) {
-            List<Sort.Order> orders = new ArrayList<Sort.Order>();
-            for (IOrder iOrder : order) {
-                orders.add(new Sort.Order(
-                        iOrder.isAsc() ? Sort.Direction.ASC : Sort.Direction.DESC,
-                        iOrder.getFieldName()));
-            }
-            pageRequest = new PageRequest(page, size, new Sort(orders));
-        } else {
-            pageRequest = new PageRequest(page, size);
-        }
-
-        Page<E> result = getRepository().findAll(pageRequest);
+    public List<V> findAll(Pageable pageable) {
+        Page<E> result = getRepository().findAll(PageableUtils.convert(pageable));
         return convert(result.getContent());
     }
 

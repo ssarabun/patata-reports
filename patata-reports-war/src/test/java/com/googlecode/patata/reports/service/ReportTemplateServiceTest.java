@@ -1,7 +1,7 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.ReportDataSourceView;
-import com.googlecode.patata.reports.dto.ReportTemplateView;
+import com.googlecode.patata.reports.dto.ReportDataSourceDto;
+import com.googlecode.patata.reports.dto.ReportTemplateDto;
 import com.googlecode.patata.reports.service.api.IReportTemplateService;
 import java.util.List;
 import java.util.UUID;
@@ -43,18 +43,18 @@ public class ReportTemplateServiceTest {
 
 
         //create and init view
-        ReportTemplateView view = new ReportTemplateView();
+        ReportTemplateDto view = new ReportTemplateDto();
         view.setPrevVersionId(prevVersionId);
         view.setName(name);
         view.setContent(content);
         view.setDefaultDatasourceId(defaultDatasourceId);
 
-        List<ReportDataSourceView> dataSources = view.getReportDatasources();
-        dataSources.add(new ReportDataSourceView("parameter1", UUID.fromString("5afba5ff-be24-4777-b85d-7ef408c42bc2")));
+        List<ReportDataSourceDto> dataSources = view.getReportDatasources();
+        dataSources.add(new ReportDataSourceDto("parameter1", UUID.fromString("5afba5ff-be24-4777-b85d-7ef408c42bc2")));
 
 
         //save view
-        ReportTemplateView createdView = service.save(view);
+        ReportTemplateDto createdView = service.save(view);
         assertNotNull(createdView);
         assertNotNull(createdView.getId());
 
@@ -70,14 +70,14 @@ public class ReportTemplateServiceTest {
 
         assertNotNull(createdView.getReportDatasources());
         assertFalse(createdView.getReportDatasources().isEmpty());
-        for (ReportDataSourceView reportDataSource : createdView.getReportDatasources()) {
+        for (ReportDataSourceDto reportDataSource : createdView.getReportDatasources()) {
             assertNotNull(reportDataSource.getId());
             assertNotNull(reportDataSource.getParameterName());
             assertNotNull(reportDataSource.getDatasourceId());
         }
 
         //find view
-        ReportTemplateView foundView = service.findOne(createdView.getId());
+        ReportTemplateDto foundView = service.findOne(createdView.getId());
         assertNotNull(foundView);
 
         assertNotNull(foundView.getId());
@@ -96,7 +96,7 @@ public class ReportTemplateServiceTest {
         createdView.setDefaultDatasourceId(newDefaultDatasourceId);
         createdView.getReportDatasources().clear();
 
-        ReportTemplateView updatedView = service.save(createdView);
+        ReportTemplateDto updatedView = service.save(createdView);
         assertNotNull(updatedView);
         assertEquals(updatedView.getId(), createdView.getId());
         assertEquals(updatedView.getCreated(), createdView.getCreated());

@@ -1,6 +1,6 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.ReportFolderView;
+import com.googlecode.patata.reports.dto.ReportFolderDto;
 import com.googlecode.patata.reports.service.api.IReportFolderService;
 import java.util.UUID;
 import javax.inject.Inject;
@@ -37,13 +37,13 @@ public class ReportFolderServiceTest {
 
 
         //create and init view
-        ReportFolderView view = new ReportFolderView();
+        ReportFolderDto view = new ReportFolderDto();
         view.setName(name);
         view.setParentId(parentId);
 
 
         //save view
-        ReportFolderView createdView = service.save(view);
+        ReportFolderDto createdView = service.save(view);
         assertNotNull(createdView);
         assertNotNull(createdView.getId());
 
@@ -52,7 +52,7 @@ public class ReportFolderServiceTest {
         assertEquals(createdView.getParentId(), view.getParentId());
 
         //find view
-        ReportFolderView foundView = service.findOne(createdView.getId());
+        ReportFolderDto foundView = service.findOne(createdView.getId());
         assertNotNull(foundView);
 
         assertNotNull(foundView.getId());
@@ -65,7 +65,7 @@ public class ReportFolderServiceTest {
         createdView.setName(newName);
         createdView.setParentId(newParentId);
 
-        ReportFolderView updatedView = service.save(createdView);
+        ReportFolderDto updatedView = service.save(createdView);
         assertNotNull(updatedView);
         assertEquals(updatedView.getId(), createdView.getId());
         assertEquals(updatedView.getName(), createdView.getName());

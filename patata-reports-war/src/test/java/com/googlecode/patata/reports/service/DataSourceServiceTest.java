@@ -1,6 +1,6 @@
 package com.googlecode.patata.reports.service;
 
-import com.googlecode.patata.reports.dto.DataSourceView;
+import com.googlecode.patata.reports.dto.DataSourceDto;
 import com.googlecode.patata.reports.service.api.IDataSourceService;
 import javax.inject.Inject;
 import org.junit.Test;
@@ -38,14 +38,14 @@ public class DataSourceServiceTest {
 
 
         //create and init view
-        DataSourceView view = new DataSourceView();
+        DataSourceDto view = new DataSourceDto();
         view.setJndiName(jndiName);
         view.setName(name);
         view.setDescription(description);
 
 
         //save view
-        DataSourceView createdView = service.save(view);
+        DataSourceDto createdView = service.save(view);
         assertNotNull(createdView);
         assertNotNull(createdView.getId());
         System.out.println("createdView = " + createdView);
@@ -58,7 +58,7 @@ public class DataSourceServiceTest {
         assertEquals(createdView.getDescription(), view.getDescription());
 
         //find view
-        DataSourceView foundView = service.findOne(createdView.getId());
+        DataSourceDto foundView = service.findOne(createdView.getId());
         assertNotNull(foundView);
 
         assertNotNull(foundView.getId());
@@ -73,7 +73,7 @@ public class DataSourceServiceTest {
         createdView.setName(newName);
         createdView.setDescription(newDescription);
 
-        DataSourceView updatedView = service.save(createdView);
+        DataSourceDto updatedView = service.save(createdView);
         assertNotNull(updatedView);
         assertEquals(updatedView.getId(), createdView.getId());
         assertEquals(updatedView.getJndiName(), createdView.getJndiName());
