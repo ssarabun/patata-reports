@@ -18,50 +18,18 @@ package com.googlecode.patata.reports.web.utils;
 
 import com.googlecode.patata.reports.dto.DataSourceDto;
 import com.googlecode.patata.reports.service.api.IDataSourceService;
-import com.googlecode.patata.reports.service.spi.Page;
-import com.googlecode.patata.reports.service.spi.Pageable;
-import java.util.List;
-import org.apache.tapestry5.grid.GridDataSource;
-import org.apache.tapestry5.grid.SortConstraint;
+import java.util.UUID;
+import org.apache.tapestry5.annotations.Property;
 
 /**
  *
  * @author Sergey Sarabun <sergey.sarabun@gmail.com>
  * @date Nov 25, 2014
  */
-public class DataSourceGridDataSource implements GridDataSource {
-
-    private final IDataSourceService service;
-    private List<DataSourceDto> list;
-    private int startIndex;
+public class DataSourceGridDataSource extends AbstractGridDataSource<DataSourceDto, UUID> {
 
     public DataSourceGridDataSource(IDataSourceService service) {
-        this.service = service;
-    }
-
-    public int getAvailableRows() {
-        return (int) service.count();
-    }
-
-    public void prepare(int startIndex, int endIndex, List<SortConstraint> sortConstraints) {
-        System.out.println("startIndex = " + startIndex);
-        System.out.println("endIndex = " + endIndex);
-        System.out.println("sortConstraints = " + sortConstraints);
-        this.startIndex = startIndex;
-        list = service.findAll(startIndex, endIndex);
-    }
-
-    public Object getRowValue(int index) {
-        index = index - this.startIndex;
-        if (list.isEmpty()) {
-            return null;
-        }
-
-        if (list.size() <= index) {
-            return null;
-        }
-
-        return list.get(index);
+        super(service);
     }
 
     public Class getRowType() {

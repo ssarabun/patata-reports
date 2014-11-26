@@ -3,7 +3,7 @@ package com.googlecode.patata.reports.web.pages;
 import com.googlecode.patata.reports.dto.DataSourceDto;
 import com.googlecode.patata.reports.service.api.IDataSourceService;
 import com.googlecode.patata.reports.web.utils.DataSourceGridDataSource;
-import com.googlecode.patata.reports.web.view.VDataSource;
+import java.util.UUID;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Persist;
@@ -42,6 +42,15 @@ public class DataSource {
     void onActionFromNew() {
         editMode = true;
         dataSource = new DataSourceDto();
+    }
+
+    void onActionFromEdit(String id) {
+        editMode = true;
+        dataSource = dataSourceService.findOne(UUID.fromString(id));
+    }
+
+    void onActionFromDelete(String id) {
+        dataSourceService.delete(UUID.fromString(id));
     }
 
     void onSuccess() {

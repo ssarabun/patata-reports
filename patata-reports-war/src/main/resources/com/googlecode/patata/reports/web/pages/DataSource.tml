@@ -6,8 +6,15 @@
 
         <t:block id="view">
             <p><t:actionlink t:id="new">Create new DataSource</t:actionlink></p>
-            <t:grid source="source" pagerPosition="both" 
-                    t:row="dataSource" t:rowsPerPage="3"/>
+            <t:grid source="source"  exclude="id, version" add="edit, delete"
+                    pagerPosition="both" row="dataSource" rowsPerPage="5">
+                <p:editCell>
+                    <t:actionlink t:id="edit" context="dataSource.id">Edit</t:actionlink>
+                </p:editCell>
+                <p:deleteCell>
+                    <t:actionlink t:id="delete" context="dataSource.id">Delete</t:actionlink>
+                </p:deleteCell>
+            </t:grid>
         </t:block>
 
         <t:block id="edit">
