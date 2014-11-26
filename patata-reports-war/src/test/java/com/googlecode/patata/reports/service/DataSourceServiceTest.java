@@ -16,8 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(value = SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
-    "classpath:patata-reports-test-properties-spring-context.xml",
-    "classpath:patata-reports-spring-context.xml"
+    "classpath:test-properties-application-context.xml",
+    "classpath:application-context.xml"
 })
 public class DataSourceServiceTest {
 
@@ -36,13 +36,11 @@ public class DataSourceServiceTest {
         String newName = "testName2";
         String newDescription = "description1";
 
-
         //create and init view
         DataSourceDto view = new DataSourceDto();
         view.setJndiName(jndiName);
         view.setName(name);
         view.setDescription(description);
-
 
         //save view
         DataSourceDto createdView = service.save(view);
@@ -67,7 +65,6 @@ public class DataSourceServiceTest {
         assertEquals(foundView.getName(), createdView.getName());
         assertEquals(foundView.getDescription(), createdView.getDescription());
 
-
         //update view
         createdView.setJndiName(newJndiName);
         createdView.setName(newName);
@@ -79,7 +76,6 @@ public class DataSourceServiceTest {
         assertEquals(updatedView.getJndiName(), createdView.getJndiName());
         assertEquals(updatedView.getName(), createdView.getName());
         assertEquals(updatedView.getDescription(), createdView.getDescription());
-
 
         //find view
         foundView = service.findOne(updatedView.getId());

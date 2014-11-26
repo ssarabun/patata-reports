@@ -48,7 +48,10 @@ public abstract class AbstractServiceImpl<V extends AbstractDto<VID>, E extends 
 
     @Override
     public long count() {
-        long count = getRepository().count();
+        JpaRepository<E, EID> repository = getRepository();
+        System.out.println("repository = " + repository);
+        Long count = repository.count();
+        System.out.println("count = " + count);
         return count;
     }
 

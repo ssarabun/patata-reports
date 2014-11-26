@@ -67,6 +67,12 @@
                 <artifactId>tapestry-upload</artifactId>
                 <version>${tapestry-release-version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.tapestry</groupId>
+                <artifactId>tapestry-spring</artifactId>
+                <version>${tapestry-release-version}</version>
+            </dependency>
+
             
             <dependency>
                 <groupId>net.sf.dozer</groupId>

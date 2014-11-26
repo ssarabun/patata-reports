@@ -10,8 +10,8 @@ import org.apache.tapestry5.SymbolConstants;
  * Layout component for pages of application tapestry-test.
  */
 @Import(stylesheet = "context:layout/layout.css")
-public class Layout
-{
+public class Layout {
+
     /**
      * The page title, for the <title> element and the <h1> element.
      */
@@ -38,16 +38,13 @@ public class Layout
     @Symbol(SymbolConstants.APPLICATION_VERSION)
     private String appVersion;
 
-
-    public String getClassForPageName()
-    {
+    public String getClassForPageName() {
         return resources.getPageName().equalsIgnoreCase(pageName)
                 ? "current_page_item"
                 : null;
     }
 
-    public String[] getPageNames()
-    {
-        return new String[]{"Index", "About", "Contact"};
+    public String[] getPageNames() {
+        return new String[]{"DataSource", "Index", "About", "Contact"};
     }
 }

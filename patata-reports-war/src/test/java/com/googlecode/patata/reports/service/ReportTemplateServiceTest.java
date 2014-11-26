@@ -19,8 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(value = SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
-    "classpath:patata-reports-test-properties-spring-context.xml",
-    "classpath:patata-reports-spring-context.xml"
+    "classpath:test-properties-application-context.xml",
+    "classpath:application-context.xml"
 })
 public class ReportTemplateServiceTest {
 
