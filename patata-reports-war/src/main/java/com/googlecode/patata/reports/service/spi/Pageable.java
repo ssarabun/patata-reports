@@ -23,18 +23,18 @@ package com.googlecode.patata.reports.service.spi;
  */
 public class Pageable implements java.io.Serializable {
 
-    private final int pageSize;
     private final int page;
+    private final int pageSize;
     private Sort sort;
 
-    public Pageable(int pageSize, int page) {
-        this.pageSize = pageSize;
+    public Pageable(int page, int pageSize) {
         this.page = page;
+        this.pageSize = pageSize;
     }
 
-    public Pageable(int pageSize, int page, Sort sort) {
-        this.pageSize = pageSize;
+    public Pageable(int page, int pageSize, Sort sort) {
         this.page = page;
+        this.pageSize = pageSize;
         this.sort = sort;
     }
 

@@ -7,14 +7,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,16 +37,26 @@ public abstract class AbstractServiceImpl<V extends AbstractDto<VID>, E extends 
         return resultList;
     }
 
+    public List<V> findAll(int start, int end) {
+        int pageSize = end - start + 1;
+        int pageOffset = start / pageSize;
+        org.springframework.data.domain.Pageable pageable
+                = new PageRequest(pageOffset, pageSize);
+        org.springframework.data.domain.Page<E> page
+                = getRepository().findAll(pageable);
+        return convert(page.getContent());
+    }
+
     @Override
-    public List<V> findAll(Pageable pageable) {
-        Page<E> result = getRepository().findAll(PageableUtils.convert(pageable));
-        return convert(result.getContent());
+    public Page<V> findAll(Pageable pageable) {
+        org.springframework.data.domain.Page<E> result
+                = getRepository().findAll(PageableUtils.convert(pageable));
+        return PageableUtils.convert(convert(result.getContent()), pageable);
     }
 
     @Override
     public long count() {
         JpaRepository<E, EID> repository = getRepository();
-        System.out.println("repository = " + repository);
         Long count = repository.count();
         System.out.println("count = " + count);
         return count;

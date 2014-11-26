@@ -1,7 +1,17 @@
-<html title="Contact com.mycompany"
+<html title="DataSource page"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
+    <body>
+        <t:delegate to="activeBlock"/>
 
-    <t:grid source="source" pagerPosition="both">
-    </t:grid>
+        <t:block id="view">
+            <p><t:actionlink t:id="new">Create new DataSource</t:actionlink></p>
+            <t:grid source="source" pagerPosition="both" 
+                    t:row="dataSource" t:rowsPerPage="3"/>
+        </t:block>
+
+        <t:block id="edit">
+            <t:beaneditform t:id="dataSource" cancel="true" exclude="id, version"/>
+        </t:block>
+    </body>
 </html>

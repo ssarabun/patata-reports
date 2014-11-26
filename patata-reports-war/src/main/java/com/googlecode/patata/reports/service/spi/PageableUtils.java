@@ -16,6 +16,7 @@
  */
 package com.googlecode.patata.reports.service.spi;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,6 +28,10 @@ import org.springframework.data.domain.PageRequest;
  * @date Nov 24, 2014
  */
 public abstract class PageableUtils {
+
+    public static <V extends Serializable> Page convert(List<V> result, Pageable pageable) {
+        return new Page<V>(result, pageable);
+    }
 
     public static org.springframework.data.domain.Pageable convert(Pageable pageable) {
         PageRequest pageRequest = null;

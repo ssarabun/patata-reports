@@ -17,7 +17,9 @@ public interface BaseService<V extends AbstractDto, VID extends Serializable> {
 
     List<V> findAll();
 
-    List<V> findAll(Pageable pageable);
+    List<V> findAll(int start, int end);
+
+    Page<V> findAll(Pageable pageable);
 
     long count();
 

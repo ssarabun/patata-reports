@@ -43,7 +43,16 @@
         <!-- Special filter that adds in a T5 IoC module derived from the Spring WebApplicationContext. -->
         <filter-class>org.apache.tapestry5.spring.TapestrySpringFilter</filter-class>
     </filter>
-    
+    <!--
+        <listener>
+            <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        </listener>
+        <context-param>
+            <param-name>tapestry.use-external-spring-context</param-name>
+            <param-value>true</param-value>
+        </context-param>
+    -->
+
     <filter-mapping>
         <filter-name>t5app</filter-name>
         <url-pattern>/*</url-pattern>

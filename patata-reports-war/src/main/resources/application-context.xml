@@ -78,7 +78,7 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!--<context:component-scan base-package=""/>-->
+    <context:component-scan base-package="com.googlecode.patata.reports.repository"/>
     
     <jpa:repositories base-package="com.googlecode.patata.reports.repository"
                       entity-manager-factory-ref="entityManagerFactory"

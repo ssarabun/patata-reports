@@ -16,8 +16,10 @@
  */
 package com.googlecode.patata.reports.web.utils;
 
+import com.googlecode.patata.reports.dto.DataSourceDto;
 import com.googlecode.patata.reports.service.api.IDataSourceService;
-import com.googlecode.patata.reports.web.view.VDataSource;
+import com.googlecode.patata.reports.service.spi.Page;
+import com.googlecode.patata.reports.service.spi.Pageable;
 import java.util.List;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.SortConstraint;
@@ -30,6 +32,8 @@ import org.apache.tapestry5.grid.SortConstraint;
 public class DataSourceGridDataSource implements GridDataSource {
 
     private final IDataSourceService service;
+    private List<DataSourceDto> list;
+    private int startIndex;
 
     public DataSourceGridDataSource(IDataSourceService service) {
         this.service = service;
@@ -43,14 +47,25 @@ public class DataSourceGridDataSource implements GridDataSource {
         System.out.println("startIndex = " + startIndex);
         System.out.println("endIndex = " + endIndex);
         System.out.println("sortConstraints = " + sortConstraints);
+        this.startIndex = startIndex;
+        list = service.findAll(startIndex, endIndex);
     }
 
     public Object getRowValue(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        index = index - this.startIndex;
+        if (list.isEmpty()) {
+            return null;
+        }
+
+        if (list.size() <= index) {
+            return null;
+        }
+
+        return list.get(index);
     }
 
     public Class getRowType() {
-        return VDataSource.class;
+        return DataSourceDto.class;
     }
 
 }
