@@ -18,10 +18,19 @@ package com.googlecode.patata.reports.web.utils;
 
 import com.googlecode.patata.reports.dto.AbstractDto;
 import com.googlecode.patata.reports.service.spi.BaseService;
+import com.googlecode.patata.reports.service.spi.Direction;
+import com.googlecode.patata.reports.service.spi.Order;
+import com.googlecode.patata.reports.service.spi.Page;
+import com.googlecode.patata.reports.service.spi.Pageable;
+import com.googlecode.patata.reports.service.spi.Sort;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.tapestry5.grid.ColumnSort;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.SortConstraint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -33,6 +42,7 @@ import org.apache.tapestry5.grid.SortConstraint;
 public abstract class AbstractGridDataSource<V extends AbstractDto, VID extends Serializable>
         implements GridDataSource {
 
+    private static final Logger logger = LoggerFactory.getLogger(AbstractGridDataSource.class);
     private final BaseService<V, VID> service;
     private List<V> list;
     private int startIndex;
@@ -47,7 +57,42 @@ public abstract class AbstractGridDataSource<V extends AbstractDto, VID extends 
 
     public void prepare(int startIndex, int endIndex, List<SortConstraint> sortConstraints) {
         this.startIndex = startIndex;
-        list = service.findAll(startIndex, endIndex);
+
+        logger.info("sortConstraints = " + sortConstraints);
+
+        Page<V> page = service.findAll(createPageable(startIndex, endIndex, sortConstraints));
+        list = page.getContent();
+    }
+
+    private Pageable createPageable(int startIndex, int endIndex, List<SortConstraint> sortConstraints) {
+        int pageSize = endIndex - startIndex + 1;
+        int pageOffset = startIndex / pageSize;
+
+        if (sortConstraints.isEmpty()) {
+            return new Pageable(pageOffset, pageSize);
+        } else {
+            List<Order> orders = new ArrayList<Order>(sortConstraints.size());
+            for (SortConstraint sortConstraint : sortConstraints) {
+                logger.info("PropertyModel = " + sortConstraint.getPropertyModel());
+                orders.add(new Order(convert(sortConstraint.getColumnSort()),
+                        sortConstraint.getPropertyModel().getPropertyName()));
+            }
+            
+            return new Pageable(pageOffset, pageSize, new Sort(orders));
+        }
+
+    }
+
+    private Direction convert(ColumnSort columnSort) {
+        if (columnSort == ColumnSort.ASCENDING) {
+            return Direction.ASCENDING;
+        } else if (columnSort == ColumnSort.DESCENDING) {
+            return Direction.DESCENDING;
+        } else if (columnSort == ColumnSort.UNSORTED) {
+            return Direction.UNSORTED;
+        }
+
+        return Direction.UNSORTED;
     }
 
     public Object getRowValue(int index) {

@@ -23,7 +23,7 @@ package com.googlecode.patata.reports.service.spi;
  */
 public class Order implements java.io.Serializable {
 
-    private Direction direction = Direction.ASC;
+    private Direction direction = Direction.ASCENDING;
     private String property;
     private boolean ignoreCase;
 

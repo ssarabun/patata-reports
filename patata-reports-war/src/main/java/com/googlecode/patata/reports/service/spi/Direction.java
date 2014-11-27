@@ -23,6 +23,7 @@ package com.googlecode.patata.reports.service.spi;
  */
 public enum Direction implements java.io.Serializable {
 
-    ASC,
-    DESC;
+    ASCENDING,
+    DESCENDING,
+    UNSORTED;
 }

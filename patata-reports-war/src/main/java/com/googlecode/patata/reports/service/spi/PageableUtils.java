@@ -53,7 +53,7 @@ public abstract class PageableUtils {
     public static org.springframework.data.domain.Sort.Order convert(Order order) {
         org.springframework.data.domain.Sort.Order newOrder
                 = new org.springframework.data.domain.Sort.Order(
-                        order.getDirection() == Direction.ASC
+                        order.getDirection() == Direction.ASCENDING
                                 ? org.springframework.data.domain.Sort.Direction.ASC
                                 : org.springframework.data.domain.Sort.Direction.DESC,
                         order.getProperty());
