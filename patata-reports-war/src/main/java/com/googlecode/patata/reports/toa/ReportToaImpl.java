@@ -17,9 +17,17 @@ public class ReportToaImpl extends AbsrtactToaImpl<Report, ReportDto, String, UU
     @Inject
     private IStringToUUIDIdentifierConvertor identifierConvertor;
 
+    public Class<Report> getEntityCLass() {
+        return Report.class;
+    }
+
     @Override
     public Report createEntityInstance(ReportDto view) {
         return new Report();
+    }
+
+    public Class<ReportDto> getDTOCLass() {
+        return ReportDto.class;
     }
 
     @Override
@@ -31,4 +39,5 @@ public class ReportToaImpl extends AbsrtactToaImpl<Report, ReportDto, String, UU
     protected IStringToUUIDIdentifierConvertor getIdentifierConvertor() {
         return identifierConvertor;
     }
+
 }

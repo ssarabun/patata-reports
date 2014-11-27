@@ -39,6 +39,12 @@ public class Order implements java.io.Serializable {
         this.property = property;
     }
 
+    public Order(Direction direction, String property, boolean ignoreCase) {
+        this.direction = direction;
+        this.property = property;
+        this.ignoreCase = ignoreCase;
+    }
+
     public Direction getDirection() {
         return direction;
     }
@@ -61,6 +67,10 @@ public class Order implements java.io.Serializable {
 
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
+    }
+
+    public Order newOrder(String property) {
+        return new Order(direction, property, ignoreCase);
     }
 
     @Override

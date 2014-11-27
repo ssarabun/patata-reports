@@ -12,16 +12,26 @@ import java.io.Serializable;
 /**
  *
  * @author sergey.sarabun@gmail.com
+ * @param <E>
+ * @param <DTO>
+ * @param <EID>
+ * @param <DTOID>
  * @date May 23, 2014
  */
-public interface IToa<E extends Identifiable<EID>, V extends AbstractDto, EID extends Serializable, VID extends Serializable>
-        extends IIdentifierConvertor<EID, VID> {
+public interface IToa<E extends Identifiable<EID>, DTO extends AbstractDto, EID extends Serializable, DTOID extends Serializable>
+        extends IIdentifierConvertor<EID, DTOID> {
 
-    V create(E entity);
+    DTO create(E entity);
 
-    boolean merge(E entity, V view);
+    boolean merge(E entity, DTO dto);
 
-    E createEntityInstance(V view);
+    String resolveDtoField(String dtoFieldName);
 
-    V createViewInstance(E entity);
+    E createEntityInstance(DTO dto);
+
+    Class<E> getEntityCLass();
+
+    DTO createViewInstance(E entity);
+
+    Class<DTO> getDTOCLass();
 }

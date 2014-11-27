@@ -12,47 +12,58 @@ import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import org.dozer.Mapper;
+import org.dozer.metadata.ClassMappingMetadata;
+import org.dozer.metadata.FieldMappingMetadata;
+import org.dozer.metadata.MappingMetadata;
 
 /**
  *
  * @author sergey.sarabun@gmail.com
  * @param <E>
- * @param <V>
+ * @param <DTO>
  * @param <EID>
- * @param <VID>
+ * @param <DTOID>
  * @date May 23, 2014
  */
-public abstract class AbsrtactToaImpl<E extends Identifiable<EID>, V extends AbstractDto, EID extends Serializable, VID extends Serializable>
-        implements IToa<E, V, EID, VID> {
+public abstract class AbsrtactToaImpl<E extends Identifiable<EID>, DTO extends AbstractDto, EID extends Serializable, DTOID extends Serializable>
+        implements IToa<E, DTO, EID, DTOID> {
 
     @Inject
     private Mapper dozzer;
+    @Inject
+    private MappingMetadata metadata;
 
     @Override
-    public V create(E entity) {
+    public DTO create(E entity) {
         if (entity == null) {
             return null;
         }
 
-        V view = createViewInstance(entity);
+        DTO view = createViewInstance(entity);
         dozerMap(entity, view);
         return view;
     }
 
     @Override
-    public boolean merge(E entity, V view) {
+    public boolean merge(E entity, DTO view) {
         dozerMap(view, entity);
         return true;
     }
 
     @Override
-    public VID convertEntityId(EID id) {
+    public DTOID convertEntityId(EID id) {
         return getIdentifierConvertor().convertEntityId(id);
     }
 
     @Override
-    public EID convertViewId(VID id) {
+    public EID convertViewId(DTOID id) {
         return getIdentifierConvertor().convertViewId(id);
+    }
+
+    public String resolveDtoField(String dtoFieldName) {
+        ClassMappingMetadata classMetadata = metadata.getClassMapping(getEntityCLass(), getDTOCLass());
+        FieldMappingMetadata fieldMetadata = classMetadata.getFieldMappingByDestination(dtoFieldName);
+        return fieldMetadata.getSourceName();
     }
 
     protected <V extends AbstractDto<VID>, E extends Identifiable<EID>, EID extends Serializable, VID extends Serializable> void mergeCollection(
@@ -107,5 +118,5 @@ public abstract class AbsrtactToaImpl<E extends Identifiable<EID>, V extends Abs
         dozzer.map(obj1, obj2);
     }
 
-    protected abstract IIdentifierConvertor<EID, VID> getIdentifierConvertor();
+    protected abstract IIdentifierConvertor<EID, DTOID> getIdentifierConvertor();
 }

@@ -17,9 +17,17 @@ public class DataSourceToaImpl extends AbsrtactToaImpl<DataSource, DataSourceDto
     @Inject
     private IStringToUUIDIdentifierConvertor identifierConvertor;
 
+    public Class<DataSource> getEntityCLass() {
+        return DataSource.class;
+    }
+
     @Override
     public DataSource createEntityInstance(DataSourceDto view) {
         return new DataSource();
+    }
+
+    public Class<DataSourceDto> getDTOCLass() {
+        return DataSourceDto.class;
     }
 
     @Override
@@ -31,4 +39,5 @@ public class DataSourceToaImpl extends AbsrtactToaImpl<DataSource, DataSourceDto
     protected IStringToUUIDIdentifierConvertor getIdentifierConvertor() {
         return identifierConvertor;
     }
+
 }

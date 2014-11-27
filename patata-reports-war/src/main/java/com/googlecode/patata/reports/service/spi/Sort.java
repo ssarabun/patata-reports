@@ -25,7 +25,7 @@ import java.util.List;
  * @author Sergey Sarabun <sergey.sarabun@gmail.com>
  * @date Nov 24, 2014
  */
-public class Sort implements java.io.Serializable {
+public class Sort implements Iterable<Order>, java.io.Serializable {
 
     private final List<Order> orders;
     private Direction direction;

@@ -17,9 +17,17 @@ public class ReportDataSourceToaImpl extends AbsrtactToaImpl<ReportDataSource, R
     @Inject
     private IStringToUUIDIdentifierConvertor identifierConvertor;
 
+    public Class<ReportDataSource> getEntityCLass() {
+        return ReportDataSource.class;
+    }
+
     @Override
     public ReportDataSource createEntityInstance(ReportDataSourceDto view) {
         return new ReportDataSource();
+    }
+
+    public Class<ReportDataSourceDto> getDTOCLass() {
+        return ReportDataSourceDto.class;
     }
 
     @Override
@@ -31,4 +39,5 @@ public class ReportDataSourceToaImpl extends AbsrtactToaImpl<ReportDataSource, R
     protected IStringToUUIDIdentifierConvertor getIdentifierConvertor() {
         return identifierConvertor;
     }
+
 }

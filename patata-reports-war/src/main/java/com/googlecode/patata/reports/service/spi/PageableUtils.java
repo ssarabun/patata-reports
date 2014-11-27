@@ -16,6 +16,7 @@
  */
 package com.googlecode.patata.reports.service.spi;
 
+import com.googlecode.patata.reports.toa.IToa;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,14 +34,12 @@ public abstract class PageableUtils {
         return new Page<V>(result, pageable);
     }
 
-    public static org.springframework.data.domain.Pageable convert(Pageable pageable) {
+    public static org.springframework.data.domain.Pageable convert(Pageable pageable, IToa toa) {
         PageRequest pageRequest = null;
         if (pageable.getSort() != null) {
             List<org.springframework.data.domain.Sort.Order> orders = new ArrayList<org.springframework.data.domain.Sort.Order>();
-            Iterator<Order> it = pageable.getSort().iterator();
-            while (it.hasNext()) {
-                Order next = it.next();
-                orders.add(convert(next));
+            for (Order sort : pageable.getSort()) {
+                orders.add(convert(sort, toa));
             }
             pageRequest = new PageRequest(pageable.getPage(), pageable.getPageSize(), new org.springframework.data.domain.Sort(orders));
         } else {
@@ -50,13 +49,13 @@ public abstract class PageableUtils {
         return pageRequest;
     }
 
-    public static org.springframework.data.domain.Sort.Order convert(Order order) {
+    public static org.springframework.data.domain.Sort.Order convert(Order order, IToa toa) {
         org.springframework.data.domain.Sort.Order newOrder
                 = new org.springframework.data.domain.Sort.Order(
                         order.getDirection() == Direction.ASCENDING
                                 ? org.springframework.data.domain.Sort.Direction.ASC
                                 : org.springframework.data.domain.Sort.Direction.DESC,
-                        order.getProperty());
+                        toa.resolveDtoField(order.getProperty()));
 
         if (order.isIgnoreCase()) {
             newOrder = newOrder.ignoreCase();

@@ -50,7 +50,7 @@ public abstract class AbstractServiceImpl<V extends AbstractDto<VID>, E extends 
     @Override
     public Page<V> findAll(Pageable pageable) {
         org.springframework.data.domain.Page<E> result
-                = getRepository().findAll(PageableUtils.convert(pageable));
+                = getRepository().findAll(PageableUtils.convert(pageable, getToa()));
         return PageableUtils.convert(convert(result.getContent()), pageable);
     }
 

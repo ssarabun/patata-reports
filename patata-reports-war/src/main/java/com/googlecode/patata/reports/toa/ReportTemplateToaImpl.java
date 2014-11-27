@@ -51,9 +51,17 @@ public class ReportTemplateToaImpl extends AbsrtactToaImpl<ReportTemplate, Repor
         });
     }
 
+    public Class<ReportTemplate> getEntityCLass() {
+        return ReportTemplate.class;
+    }
+
     @Override
     public ReportTemplate createEntityInstance(ReportTemplateDto view) {
         return new ReportTemplate();
+    }
+
+    public Class<ReportTemplateDto> getDTOCLass() {
+        return ReportTemplateDto.class;
     }
 
     @Override
@@ -65,4 +73,5 @@ public class ReportTemplateToaImpl extends AbsrtactToaImpl<ReportTemplate, Repor
     protected IStringToUUIDIdentifierConvertor getIdentifierConvertor() {
         return identifierConvertor;
     }
+
 }

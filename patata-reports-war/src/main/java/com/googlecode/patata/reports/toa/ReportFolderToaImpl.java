@@ -17,9 +17,17 @@ public class ReportFolderToaImpl extends AbsrtactToaImpl<ReportFolder, ReportFol
     @Inject
     private IStringToUUIDIdentifierConvertor identifierConvertor;
 
+    public Class<ReportFolder> getEntityCLass() {
+        return ReportFolder.class;
+    }
+
     @Override
     public ReportFolder createEntityInstance(ReportFolderDto view) {
         return new ReportFolder();
+    }
+
+    public Class<ReportFolderDto> getDTOCLass() {
+        return ReportFolderDto.class;
     }
 
     @Override
