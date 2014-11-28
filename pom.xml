@@ -37,6 +37,9 @@
     </developers>
 
     <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.license>lgpl30</netbeans.hint.license>
 
@@ -48,10 +51,22 @@
         
     <modules>
         <module>patata-reports-war</module>
+        <module>patata-reports-service</module>
     </modules>
     
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.googlecode.patata.reports</groupId>
+                <artifactId>patata-reports-service</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <classifier>client-api</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.patata.reports</groupId>
+                <artifactId>patata-reports-service</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.tapestry</groupId>
                 <artifactId>tapestry-core</artifactId>
@@ -86,9 +101,29 @@
                 <version>4.3.7.Final</version>
             </dependency>
             <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>2.3.2</version>
+            </dependency>  
+            <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-jpa</artifactId>
                 <version>1.7.1.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>4.1.2.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

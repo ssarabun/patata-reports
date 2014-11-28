@@ -16,7 +16,7 @@
  */
 package com.googlecode.patata.reports.web.components;
 
-import com.googlecode.patata.reports.dto.AbstractDto;
+import com.googlecode.patata.reports.dto.spi.AbstractDto;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentEventCallback;
 import org.apache.tapestry5.ComponentResources;

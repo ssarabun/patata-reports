@@ -16,7 +16,7 @@
  */
 package com.googlecode.patata.reports.web.utils;
 
-import com.googlecode.patata.reports.dto.AbstractDto;
+import com.googlecode.patata.reports.dto.spi.AbstractDto;
 import com.googlecode.patata.reports.service.spi.BaseService;
 import com.googlecode.patata.reports.service.spi.Direction;
 import com.googlecode.patata.reports.service.spi.Order;
