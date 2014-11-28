@@ -19,7 +19,6 @@ package com.googlecode.patata.reports.web.utils;
 import com.googlecode.patata.reports.dto.DataSourceDto;
 import com.googlecode.patata.reports.service.api.IDataSourceService;
 import java.util.UUID;
-import org.apache.tapestry5.annotations.Property;
 
 /**
  *

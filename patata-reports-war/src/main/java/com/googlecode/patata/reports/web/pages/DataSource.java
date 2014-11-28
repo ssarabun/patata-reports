@@ -4,29 +4,21 @@ import com.googlecode.patata.reports.dto.DataSourceDto;
 import com.googlecode.patata.reports.service.api.IDataSourceService;
 import com.googlecode.patata.reports.web.utils.DataSourceGridDataSource;
 import java.util.UUID;
-import org.apache.tapestry5.Block;
+import javax.inject.Inject;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DataSource {
+public class DataSource extends AbstractCrud<UUID, DataSourceDto, IDataSourceService> {
 
     private static final Logger logger = LoggerFactory.getLogger(DataSource.class);
-    @javax.inject.Inject
-    private IDataSourceService dataSourceService;
     @Inject
-    private Block view, edit;
+    private IDataSourceService dataSourceService;
     @Property
     @Persist
     private DataSourceGridDataSource source;
-    @Property
-    @Persist
-    private DataSourceDto dataSource;
-    @Persist
-    private boolean editMode;
 
     void setupRender() {
         logger.info("void setupRender()");
@@ -35,31 +27,21 @@ public class DataSource {
 
     boolean beginRender(MarkupWriter writer) throws Exception {
         logger.info("boolean beginRender(MarkupWriter writer)");
-        System.out.println("dataSourceService = " + dataSourceService);
         return true;
     }
 
-    void onActionFromNew() {
-        editMode = true;
-        dataSource = new DataSourceDto();
+    @Override
+    protected DataSourceDto createDto() {
+        return new DataSourceDto();
     }
 
-    void onActionFromEdit(String id) {
-        editMode = true;
-        dataSource = dataSourceService.findOne(UUID.fromString(id));
+    @Override
+    protected IDataSourceService getService() {
+        return dataSourceService;
     }
 
-    void onActionFromDelete(String id) {
-        dataSourceService.delete(UUID.fromString(id));
-    }
-
-    void onSuccess() {
-        dataSourceService.save(dataSource);
-        dataSource = null;
-        editMode = false;
-    }
-
-    public Object getActiveBlock() {
-        return editMode ? edit : view;
+    @Override
+    protected UUID convert(String id) {
+        return UUID.fromString(id);
     }
 }

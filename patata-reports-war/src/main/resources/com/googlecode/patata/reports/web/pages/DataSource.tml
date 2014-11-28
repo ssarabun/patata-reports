@@ -2,23 +2,10 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
     <body>
-        <t:delegate to="activeBlock"/>
-
-        <t:block id="view">
-            <p><t:actionlink t:id="new">Create new DataSource</t:actionlink></p>
-            <t:grid source="source"  exclude="id, version" add="edit, delete"
-                    pagerPosition="both" row="dataSource" rowsPerPage="5">
-                <p:editCell>
-                    <t:actionlink t:id="edit" context="dataSource.id">Edit</t:actionlink>
-                </p:editCell>
-                <p:deleteCell>
-                    <t:actionlink t:id="delete" context="dataSource.id">Delete</t:actionlink>
-                </p:deleteCell>
-            </t:grid>
-        </t:block>
-
-        <t:block id="edit">
-            <t:beaneditform t:id="dataSource" cancel="true" exclude="id, version"/>
-        </t:block>
+        <t:crudpage t:id="dsp" t:source="source"
+                    t:exclude="literal:id,version"
+                    t:rowsPerPage="20"
+                    t:createLinkLabel="literal:Create new DataSource"
+                    />
     </body>
 </html>

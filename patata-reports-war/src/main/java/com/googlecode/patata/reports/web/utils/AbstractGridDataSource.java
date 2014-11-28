@@ -73,11 +73,10 @@ public abstract class AbstractGridDataSource<V extends AbstractDto, VID extends 
         } else {
             List<Order> orders = new ArrayList<Order>(sortConstraints.size());
             for (SortConstraint sortConstraint : sortConstraints) {
-                logger.info("PropertyModel = " + sortConstraint.getPropertyModel());
                 orders.add(new Order(convert(sortConstraint.getColumnSort()),
                         sortConstraint.getPropertyModel().getPropertyName()));
             }
-            
+
             return new Pageable(pageOffset, pageSize, new Sort(orders));
         }
 

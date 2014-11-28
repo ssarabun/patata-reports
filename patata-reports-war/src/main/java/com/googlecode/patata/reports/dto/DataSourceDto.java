@@ -36,4 +36,10 @@ public class DataSourceDto extends AbstractDto<UUID> {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "DataSourceDto{" + "id=" + id + ", version=" + version + ", jndiName=" + jndiName + ", name=" + name + ", description=" + description + '}';
+    }
+
 }

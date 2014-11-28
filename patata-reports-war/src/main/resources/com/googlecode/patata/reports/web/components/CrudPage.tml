@@ -1,0 +1,26 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter">
+
+    <t:delegate to="activeBlock"/>
+
+    <t:block id="viewBlock">
+        <p><t:actionlink t:id="new">${prop:createLinkLabel}</t:actionlink></p>
+        <t:grid source="source"  t:exclude="prop:exclude" add="edit, delete"
+                pagerPosition="both" row="item" rowsPerPage="rowsPerPage">
+            <p:editCell>
+                <t:actionlink t:id="edit" context="item.id">Edit</t:actionlink>
+            </p:editCell>
+            <p:deleteCell>
+                <t:actionlink t:id="delete" context="item.id">Delete</t:actionlink>
+            </p:deleteCell>
+        </t:grid>
+    </t:block>
+
+    <t:block id="editBlock">
+        <t:beaneditform t:id="editForm" object="item" model="model" cancel="true">
+            <p:version>
+                <t:hidden value="item.version"/>
+            </p:version>
+        </t:beaneditform>
+    </t:block>
+</t:container>
