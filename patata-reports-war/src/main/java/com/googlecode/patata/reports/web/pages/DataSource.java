@@ -11,7 +11,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DataSource extends AbstractCrud<UUID, DataSourceDto, IDataSourceService> {
+public class DataSource {
 
     private static final Logger logger = LoggerFactory.getLogger(DataSource.class);
     @Inject
@@ -30,18 +30,25 @@ public class DataSource extends AbstractCrud<UUID, DataSourceDto, IDataSourceSer
         return true;
     }
 
-    @Override
-    protected DataSourceDto createDto() {
+    DataSourceDto onNewItemDsp() {
         return new DataSourceDto();
     }
 
-    @Override
-    protected IDataSourceService getService() {
-        return dataSourceService;
+    DataSourceDto onPrepareItemDsp(String id) {
+        DataSourceDto ds = null;
+        if (id != null) {
+            ds = dataSourceService.findOne(UUID.fromString(id));
+        } else {
+            ds = new DataSourceDto();
+        }
+        return ds;
     }
 
-    @Override
-    protected UUID convert(String id) {
-        return UUID.fromString(id);
+    void onDeleteItemDsp(String id) {
+        dataSourceService.delete(UUID.fromString(id));
+    }
+
+    void onSaveItemDsp(DataSourceDto item) {
+        dataSourceService.save(item);
     }
 }

@@ -58,8 +58,6 @@ public abstract class AbstractGridDataSource<V extends AbstractDto, VID extends 
     public void prepare(int startIndex, int endIndex, List<SortConstraint> sortConstraints) {
         this.startIndex = startIndex;
 
-        logger.info("sortConstraints = " + sortConstraints);
-
         Page<V> page = service.findAll(createPageable(startIndex, endIndex, sortConstraints));
         list = page.getContent();
     }

@@ -50,8 +50,8 @@
     </properties>
         
     <modules>
-        <module>patata-reports-war</module>
         <module>patata-reports-service</module>
+        <module>patata-reports-war</module>
     </modules>
     
     <dependencyManagement>

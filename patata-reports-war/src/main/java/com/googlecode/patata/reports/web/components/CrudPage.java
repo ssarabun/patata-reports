@@ -49,7 +49,6 @@ public class CrudPage {
     private ComponentResources resources;
     @Component(id = "editForm")
     private BeanEditForm form;
-
     @Parameter(required = true, allowNull = false)
     @Property
     private GridDataSource source;
@@ -72,6 +71,7 @@ public class CrudPage {
     private String id;
     @Persist
     private boolean editMode;
+    private boolean isCanceled;
 
     String onPassivate() {
         return id;
@@ -82,15 +82,18 @@ public class CrudPage {
     }
 
     void onActionFromNew() {
+
         editMode = true;
         id = null;
 
-        model = beanModelSource.createEditModel(item.getClass(), resources.getContainerMessages());
+        model = beanModelSource.createEditModel(source.getRowType(), resources.getContainerMessages());
         BeanModelUtils.modify(model, null, null, exclude, null);
     }
 
     void onActionFromDelete(String id) {
-        resources.triggerEvent("deleteItem", new Object[]{id}, null);
+        String componentId = resources.getId();
+        String event = componentId == null ? "deleteItem" : "deleteItem" + componentId;
+        resources.triggerEvent(event, new Object[]{id}, null);
     }
 
     void onActionFromEdit(String id) {
@@ -98,7 +101,7 @@ public class CrudPage {
         this.id = id;
         editMode = true;
 
-        model = beanModelSource.createEditModel(item.getClass(), resources.getContainerMessages());
+        model = beanModelSource.createEditModel(source.getRowType(), resources.getContainerMessages());
         BeanModelUtils.modify(model, null, null, exclude, null);
     }
 
@@ -109,6 +112,8 @@ public class CrudPage {
 
     void onCanceled() {
         logger.info("void onCanceled()");
+        editMode = false;
+        isCanceled = true;
     }
 
     void onSuccess() {
@@ -120,8 +125,9 @@ public class CrudPage {
     void onPrepareForRender() {
         logger.info("void onPrepareForRender()");
         logger.info("id = " + id);
-        resources.triggerEvent("prepareItem", new Object[]{id}, new ComponentEventCallback() {
-
+        String componentId = resources.getId();
+        String event = componentId == null ? "prepareItem" : "prepareItem" + componentId;
+        resources.triggerEvent(event, new Object[]{id}, new ComponentEventCallback() {
             public boolean handleResult(Object result) {
                 item = (AbstractDto) result;
                 return true;
@@ -136,13 +142,19 @@ public class CrudPage {
 
     void onValidateFromEditForm() {
         logger.info("void onValidateFromEditForm()");
+        if (isCanceled) {
+            return;
+        }
+
         if (form.getHasErrors()) {
             // We get here only if a server-side validator detected an error.
             return;
         }
 
         try {
-            resources.triggerEvent("saveItem", new Object[]{item}, null);
+            String componentId = resources.getId();
+            String event = componentId == null ? "saveItem" : "saveItem" + componentId;
+            resources.triggerEvent(event, new Object[]{item}, null);
         } catch (Exception e) {
             // Display the cause. In a real system we would try harder to get a user-friendly message.
             form.recordError(e.getLocalizedMessage());
